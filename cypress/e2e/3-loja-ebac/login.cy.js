@@ -7,15 +7,16 @@ describe('Funcionalidade: Login', () => {
         cy.visit('minha-conta/')
     })
 
-    afterEach(() => {
-        cy.screenshot()
-    })
+    /*    afterEach(() => {
+    //       cy.screenshot()
+    //    })
+    */
 
     it('Deve fazer login com sucesso', () => {
         cy.get('#username').type('cassia.teste@teste.com.br')
         cy.get('#password').type('teste@123')
         cy.get('.woocommerce-form > .button').click()
-        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, cassia.teste (não é cassia.teste? Sair)')
+        cy.get('.woocommerce-MyAccount-content').should('contain', 'A partir do painel de controle de sua conta, você pode ver suas compras recentes, gerenciar seus endereços de entrega e faturamento, e editar sua senha e detalhes da conta.')
     })
 
     it('Deve exibir uma mensagem de erro ao inserir usuário inválido', () => {
@@ -38,7 +39,7 @@ describe('Funcionalidade: Login', () => {
         cy.get('#username').type(perfil.usuario)
         cy.get('#password').type(perfil.senha)
         cy.get('.woocommerce-form > .button').click()
-        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, cassia.teste (não é cassia.teste? Sair)')
+        cy.get('.woocommerce-MyAccount-content').should('contain', 'A partir do painel de controle de sua conta, você pode ver suas compras recentes, gerenciar seus endereços de entrega e faturamento, e editar sua senha e detalhes da conta.')
     })
 
     it('Deve fazer login com sucesso - Usando Fixture', () => {
@@ -46,13 +47,13 @@ describe('Funcionalidade: Login', () => {
             cy.get('#username').type(login.usuario)
             cy.get('#password').type(login.senha, {log: false})
             cy.get('.woocommerce-form > .button').click()
-            cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, cassia.teste (não é cassia.teste? Sair)')
+            cy.get('.woocommerce-MyAccount-content').should('contain', 'A partir do painel de controle de sua conta, você pode ver suas compras recentes, gerenciar seus endereços de entrega e faturamento, e editar sua senha e detalhes da conta.')
         })
     })
 
     it('Deve fazer login com sucesso - Usando comandos customizados - dados fixos', () => {
         cy.login('cassia.teste@teste.com.br', 'teste@123')
-        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, cassia.teste (não é cassia.teste? Sair)')
+        cy.get('.woocommerce-MyAccount-content').should('contain', 'A partir do painel de controle de sua conta, você pode ver suas compras recentes, gerenciar seus endereços de entrega e faturamento, e editar sua senha e detalhes da conta.')
     })
 
 })
